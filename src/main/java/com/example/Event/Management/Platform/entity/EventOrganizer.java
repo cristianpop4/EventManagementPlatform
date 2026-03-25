@@ -6,18 +6,15 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "users")
+@Table(name = "event_organizers")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name = "user_id")
-public class User extends Person{
+@PrimaryKeyJoinColumn(name = "organizer_id")
+public class EventOrganizer extends Person{
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-    private List<Registration> registration;
+    @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
+    private Event event;
 }
-

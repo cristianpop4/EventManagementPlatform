@@ -34,7 +34,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "organizer_id")
-    private User organizer;
+    private EventOrganizer organizer;
 
     @OneToMany(mappedBy = "events", cascade = CascadeType.ALL)
     private List<Registration> registration;
