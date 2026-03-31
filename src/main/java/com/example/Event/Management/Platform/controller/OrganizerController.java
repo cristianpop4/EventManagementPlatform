@@ -1,8 +1,8 @@
 package com.example.Event.Management.Platform.controller;
 
-import com.example.Event.Management.Platform.dto.OrganizerRequestDto;
-import com.example.Event.Management.Platform.dto.OrganizerResponseDto;
-import com.example.Event.Management.Platform.dto.OrganizerUpdateDto;
+import com.example.Event.Management.Platform.model.dto.OrganizerRequestDto;
+import com.example.Event.Management.Platform.model.dto.OrganizerResponseDto;
+import com.example.Event.Management.Platform.model.dto.OrganizerUpdateDto;
 import com.example.Event.Management.Platform.service.OrganizerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

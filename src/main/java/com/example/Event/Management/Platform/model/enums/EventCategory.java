@@ -1,4 +1,4 @@
-package com.example.Event.Management.Platform.enums;
+package com.example.Event.Management.Platform.model.enums;
 
 public enum EventCategory {
     MUSIC,

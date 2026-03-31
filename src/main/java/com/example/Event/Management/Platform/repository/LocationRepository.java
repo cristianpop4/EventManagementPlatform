@@ -1,6 +1,6 @@
 package com.example.Event.Management.Platform.repository;
 
-import com.example.Event.Management.Platform.entity.Location;
+import com.example.Event.Management.Platform.model.entity.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

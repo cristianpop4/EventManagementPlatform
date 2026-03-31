@@ -1,9 +1,9 @@
 package com.example.Event.Management.Platform.service.serviceImpl;
 
-import com.example.Event.Management.Platform.dto.UserRequestDto;
-import com.example.Event.Management.Platform.dto.UserResponseDto;
-import com.example.Event.Management.Platform.dto.UserUpdateDto;
-import com.example.Event.Management.Platform.entity.User;
+import com.example.Event.Management.Platform.model.dto.UserRequestDto;
+import com.example.Event.Management.Platform.model.dto.UserResponseDto;
+import com.example.Event.Management.Platform.model.dto.UserUpdateDto;
+import com.example.Event.Management.Platform.model.entity.User;
 import com.example.Event.Management.Platform.repository.UserRepository;
 import com.example.Event.Management.Platform.service.UserService;
 import lombok.RequiredArgsConstructor;

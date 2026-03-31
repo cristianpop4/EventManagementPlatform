@@ -1,7 +1,6 @@
-package com.example.Event.Management.Platform.entity;
+package com.example.Event.Management.Platform.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

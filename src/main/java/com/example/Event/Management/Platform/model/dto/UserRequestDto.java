@@ -1,4 +1,4 @@
-package com.example.Event.Management.Platform.dto;
+package com.example.Event.Management.Platform.model.dto;
 
 public record UserRequestDto(
     String username,

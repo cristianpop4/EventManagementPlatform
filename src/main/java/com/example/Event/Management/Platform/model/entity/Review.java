@@ -1,4 +1,4 @@
-package com.example.Event.Management.Platform.entity;
+package com.example.Event.Management.Platform.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@Table(name = "registration")
+@Table(name = "reviews")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Registration {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,11 +25,7 @@ public class Registration {
     @JoinColumn(name = "event_id")
     private Event event;
 
-    @ManyToOne
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
-
-    private int quantity;
-
-    private Date registeredAt;
+    private Integer rating;
+    private String comment;
+    private Date createdDate;
 }

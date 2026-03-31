@@ -1,6 +1,6 @@
-package com.example.Event.Management.Platform.entity;
+package com.example.Event.Management.Platform.model.entity;
 
-import com.example.Event.Management.Platform.enums.EventCategory;
+import com.example.Event.Management.Platform.model.enums.EventCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.example.Event.Management.Platform.repository;
 
-import com.example.Event.Management.Platform.entity.Organizer;
+import com.example.Event.Management.Platform.model.entity.Organizer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
