@@ -23,14 +23,14 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private EventCategory eventCategory;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id")
     private Location location;
 
     private LocalDateTime date;
     private Integer maxParticipants;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organizer_id")
     private Organizer organizer;
 

@@ -25,7 +25,7 @@ public class Ticket {
 
     private int availableQuantity;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id")
     private Event event;
 
