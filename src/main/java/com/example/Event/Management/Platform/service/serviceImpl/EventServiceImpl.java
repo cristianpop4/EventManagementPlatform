@@ -57,12 +57,12 @@ public class EventServiceImpl implements EventService {
         );
     }
 
-    public List<EventResponseDto> getAllEvents(){
-        return eventRepository.findAll()
-                .stream()
-                .map(this::toDto)
-                .toList();
-    }
+//    public List<EventResponseDto> getAllEvents(){
+//        return eventRepository.findAll()
+//                .stream()
+//                .map(this::toDto)
+//                .toList();
+//    }
 
     public EventResponseDto updateEvent(Long id, EventUpdateDto dto){
         Event event = eventRepository.findById(id)

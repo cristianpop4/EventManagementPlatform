@@ -9,7 +9,7 @@ public interface EventService {
     EventResponseDto createEvent(EventRequestDto eventRequest);
     List<String> getAllCategories();
     EventResponseDto getEventById(Long id);
-    List<EventResponseDto> getAllEvents();
+//    List<EventResponseDto> getAllEvents();
     EventResponseDto updateEvent(Long id, EventUpdateDto dto);
     void deleteEventById(Long id);
     List<EventResponseDto> searchEvents(EventSearchDto search);
