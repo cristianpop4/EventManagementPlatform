@@ -23,7 +23,7 @@ public class OrganizerController {
     }
 
     @Operation(summary = "Get organizer by id")
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public OrganizerResponseDto getOrganizerById(@PathVariable Long id){
         return service.getOrganizerById(id);
     }
@@ -35,14 +35,14 @@ public class OrganizerController {
     }
 
     @Operation(summary = "Update organizer")
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public OrganizerResponseDto update(@PathVariable Long id,@RequestBody OrganizerUpdateDto updateDto){
         return service.update(id, updateDto);
     }
 
     @Operation(summary = "Delete organizer")
-    @DeleteMapping
-    public void deleteOrganizerById(Long id){
+    @DeleteMapping("/{id}")
+    public void deleteOrganizerById(@PathVariable Long id){
         service.deleteOrganizerById(id);
     }
 }

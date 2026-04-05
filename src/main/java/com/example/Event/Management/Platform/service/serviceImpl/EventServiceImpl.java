@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,9 +26,9 @@ public class EventServiceImpl implements EventService {
     private final LocationServiceImpl locationService;
     private final OrganizerRepository organizerRepository;
 
-    public EventResponseDto createEvent(EventRequestDto eventRequest){
+    public EventResponseDto createEvent(EventRequestDto eventRequest) {
         Organizer organizer = organizerRepository.findById(eventRequest.organizerId())
-                .orElseThrow(()-> new RuntimeException("Organizer not found"));
+                .orElseThrow(() -> new RuntimeException("Organizer not found"));
 
         Location location = locationService.getOrCreateLocation(eventRequest.location());
 
@@ -44,34 +45,27 @@ public class EventServiceImpl implements EventService {
         return toDto(eventRepository.save(event));
     }
 
-    public List<String> getAllCategories(){
+    public List<String> getAllCategories() {
         return Arrays.stream(EventCategory.values())
                 .map(Enum::name)
                 .toList();
     }
 
-    public EventResponseDto getEventById(Long id){
+    public EventResponseDto getEventById(Long id) {
         return toDto(
                 eventRepository.findById(id)
-                        .orElseThrow(()-> new RuntimeException("Event with id: " + id + " not found"))
+                        .orElseThrow(() -> new RuntimeException("Event with id: " + id + " not found"))
         );
     }
 
-//    public List<EventResponseDto> getAllEvents(){
-//        return eventRepository.findAll()
-//                .stream()
-//                .map(this::toDto)
-//                .toList();
-//    }
-
-    public EventResponseDto updateEvent(Long id, EventUpdateDto dto){
+    public EventResponseDto updateEvent(Long id, EventUpdateDto dto) {
         Event event = eventRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Organizer not found"));
+                .orElseThrow(() -> new RuntimeException("Organizer not found"));
 
         Location location = locationService.getOrCreateLocation(dto.location());
 
         Organizer organizer = organizerRepository.findById(dto.organizerId())
-                        .orElseThrow(()-> new RuntimeException("Organizer not found"));
+                .orElseThrow(() -> new RuntimeException("Organizer not found"));
 
         event.setName(dto.name());
         event.setDescription(dto.description());
@@ -84,19 +78,45 @@ public class EventServiceImpl implements EventService {
         return toDto(eventRepository.save(event));
     }
 
-    public void deleteEventById(Long id){
+    public EventResponseDto partialUpdateEvent(Long id, EventUpdateDto dto) {
         Event event = eventRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Event not found"));
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+
+        if (dto.name() != null) event.setName(dto.name());
+        if (dto.description() != null) event.setDescription(dto.description());
+        if (dto.eventCategory() != null) event.setEventCategory(dto.eventCategory());
+        if (dto.location() != null) {
+            Location location = locationService.getOrCreateLocation(dto.location());
+            event.setLocation(location);
+        }
+        if (dto.date() != null) event.setDate(dto.date());
+        if (dto.maxParticipants() != null) event.setMaxParticipants(dto.maxParticipants());
+        if (dto.organizerId() != null){
+            Organizer organizer = organizerRepository.findById(dto.organizerId())
+                    .orElseThrow(() -> new RuntimeException("Organizer not found"));
+            event.setOrganizer(organizer);
+        }
+
+        return toDto(eventRepository.save(event));
+    }
+
+    public void deleteEventById(Long id) {
+        Event event = eventRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
 
         eventRepository.delete(event);
     }
 
-    public List<EventResponseDto> searchEvents(EventSearchDto search){
+    public List<EventResponseDto> searchEvents(EventSearchDto search) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+
         return eventRepository.searchEvents(
-                search.city().toUpperCase(),
-                search.eventCategory(),
-                search.dateTime(),
-                LocalDateTime.now()
+                        search.name(),
+                        search.city(),
+                        search.eventCategory() != null ? search.eventCategory().name() : null,
+                        search.dateTime() != null ? search.dateTime().format(formatter) : null,
+                        LocalDateTime.now().format(formatter)
                 )
                 .stream()
                 .map(this::toDto)

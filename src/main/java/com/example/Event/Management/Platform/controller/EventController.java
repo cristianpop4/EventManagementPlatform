@@ -30,25 +30,25 @@ public class EventController {
     }
 
     @Operation(summary = "Get event by id")
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public EventResponseDto getEventById(@PathVariable Long id){
         return eventService.getEventById(id);
     }
 
-//    @Operation(summary = "Get all events")
-//    @GetMapping
-//    public List<EventResponseDto> getAllEvents(){
-//        return eventService.getAllEvents();
-//    }
-
     @Operation(summary = "Update event")
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public EventResponseDto updateEvent(@PathVariable Long id, @RequestBody EventUpdateDto dto){
         return eventService.updateEvent(id, dto);
     }
 
+    @Operation(summary = "Partial update event")
+    @PatchMapping("/{id}")
+    public EventResponseDto partialUpdateEvent(@PathVariable Long id, @RequestBody EventUpdateDto dto){
+        return eventService.partialUpdateEvent(id, dto);
+    }
+
     @Operation(summary = "Delete event")
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteEventById(@PathVariable Long id){
         eventService.deleteEventById(id);
     }

@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @Operation(summary = "Get user by id")
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public UserResponseDto getUserById(@PathVariable Long id) {
         return service.getUserById(id);
     }
@@ -35,13 +35,13 @@ public class UserController {
     }
 
     @Operation(summary = "Update user")
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public UserResponseDto update(@PathVariable Long id, @RequestBody UserUpdateDto dto){
         return service.update(id, dto);
     }
 
     @Operation(summary = "Delete user")
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteUserById (@PathVariable Long id){
         service.deleteUserById(id);
     }
